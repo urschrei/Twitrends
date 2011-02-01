@@ -3,7 +3,14 @@
 """
 twitrend.py
 
-Created by Stephan Hügel on 2011-01-31
+Requires OAuth values in a text file, in the following order:
+
+Consumer key
+Consumer secret
+Access key
+Access secret
+
+Specify filename on line 38
 """
 
 
@@ -32,12 +39,14 @@ def main():
     try:
         api = tweepy.API(auth, secure = True)
         # now we can do whatever we like!
-        # Ireland's WOEID:
+        # Ireland's WOEID. Get your own here:
         woeid = 23424803
         retrieved = api.trends_location(woeid)
-    except tweepy.TweepError, err:
+    except tweepy.TweepError:
         print "Couldn't retrieve trends. Error was: "
         raise
+    # the following is required because the trends_location method returns a
+    # single-member list containing a JSON-formatted dict, *not* a JSON object
     names = [trend["name"] for trend in retrieved[0]["trends"]]
     print names
 
