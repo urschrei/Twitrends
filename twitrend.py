@@ -33,7 +33,7 @@ def open_file(to_read):
 def main():
     """ main function
     """
-    oauth_values = open_file('/Users/sth/dev/twitrend/acc_keys.txt')
+    oauth_values = open_file('acc_keys.txt')
     auth = tweepy.OAuthHandler(oauth_values[0], oauth_values[1])
     auth.set_access_token(oauth_values[2], oauth_values[3])
     try:
