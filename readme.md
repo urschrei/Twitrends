@@ -10,7 +10,14 @@ Put `twitrend.py` and `acc_keys.txt` in your path, ensure the script is executab
 
 The `-a` switch assumes you have the [Twitter][3] app installed.  
 
-Requires the [Tweepy][4] library, and OAuth credentials for your Twitter account. If you don't know how to obtain these, download and run the script found [here][5].
+Requires the [Tweepy][4] library, and OAuth credentials for your Twitter account.  
+If you don't know how to obtain these, download and run the script found [here][5].  
+`acc_keys.txt` should have the following format:  
+
+`consumer key`  
+`consumer secret`  
+`access key`  
+`access secret`  
 
 [1]:    http://en.wikipedia.org/wiki/WOEID
 [2]:    http://growl.info/extras.php
