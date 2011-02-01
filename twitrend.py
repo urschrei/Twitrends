@@ -10,7 +10,7 @@ import sys
 import os
 import tweepy
 import json
-
+import StringIO
 
 def open_file(to_read):
     """ Open a text file for reading, and strip the carriage returns
@@ -27,11 +27,14 @@ def main():
     auth.set_access_token(oauth_values[2], oauth_values[3])
     api = tweepy.API(auth, secure = True)
     # now we can do whatever we like!
-    woeid = 23424803
-    loc_trends = api.trends_location(woeid)
-    # dump the trends and associated metadata
-    print json.dumps(loc_trends, sort_keys=True, indent=4)
-
+    # Ireland's WOEID:
+    # woeid = 23424803
+    woeid = 23424977
+    retrieved = api.trends_location(woeid)
+    chunk = retrieved[0]
+    trends = chunk['trends']
+    names = [trend["name"] for trend in retrieved[0]["trends"]]
+    print names
 
 if __name__ == "__main__":
     try:
