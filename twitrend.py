@@ -15,8 +15,16 @@ Specify filename on line 36
 
 
 import sys
+import logging
+
 import tweepy
 
+
+logging.basicConfig(level=logging.DEBUG,
+format='%(asctime)s %(levelname)s %(message)s',
+datefmt='%a, %d %b %Y %H:%M:%S',
+filename='twitrend.log',
+filemode='a')
 
 def open_file(to_read):
     """ Open a text file for reading, and strip the carriage returns
@@ -27,6 +35,7 @@ def open_file(to_read):
             return [got_lines.rstrip('\n') for got_lines in opened.readlines()]
     except IOError:
         print "Couldn't read OAuth values from %s\nCan't continue." % to_read
+        logging.critical("Couldn't read OAuth values from %s. Can't continue", to_read)
         raise
 
 
@@ -39,11 +48,12 @@ def main():
     try:
         api = tweepy.API(auth, secure = True)
         # now we can do whatever we like!
-        # Ireland's WOEID. Get your own here:
+        # Ireland's WOEID:
         woeid = 23424803
         retrieved = api.trends_location(woeid)
-    except tweepy.TweepError:
+    except tweepy.TweepError, err:
         print "Couldn't retrieve trends. Error was:"
+        logging.critical("Couldn't retrieve trends. Error was: %s", err)
         raise
     # the following is required because the trends_location method returns a
     # single-member list containing a JSON-formatted dict, *not* a JSON object

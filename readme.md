@@ -7,6 +7,7 @@ A python script to output the top ten Twitter trending topics (based on [WOEID][
 Put `twitrend.py` and `acc_keys.txt` in your path, ensure the script is executable, and call it from e.g. a shell script, or cron:  
 `twitrend.py | growlnotify -a Twitter -t Twitter Trends`  
 
+If calling from cron, bear in mind that the script runs in your home directory, and will look for `acc_keys.txt` there. Its log file will also be written there.
 
 The `-a` switch assumes you have the [Twitter][3] app installed.  
 
