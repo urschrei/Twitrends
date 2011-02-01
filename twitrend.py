@@ -28,11 +28,9 @@ def main():
     api = tweepy.API(auth, secure = True)
     # now we can do whatever we like!
     # Ireland's WOEID:
-    # woeid = 23424803
-    woeid = 23424977
+    woeid = 23424803
     retrieved = api.trends_location(woeid)
     chunk = retrieved[0]
-    trends = chunk['trends']
     names = [trend["name"] for trend in retrieved[0]["trends"]]
     print names
 
