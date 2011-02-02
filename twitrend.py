@@ -35,7 +35,9 @@ def open_file(to_read):
             return [got_lines.rstrip('\n') for got_lines in opened.readlines()]
     except IOError:
         print "Couldn't read OAuth values from %s\nCan't continue." % to_read
-        logging.critical("Couldn't read OAuth values from %s. Can't continue", to_read)
+        logging.critical(
+        "Couldn't read OAuth values from %s. Can't continue", to_read
+        )
         raise
 
 
@@ -57,8 +59,7 @@ def main():
         raise
     # the following is required because the trends_location method returns a
     # single-member list containing a JSON-formatted dict, *not* a JSON object
-    names = [trend["name"] for trend in retrieved[0]["trends"]]
-    print '\n'.join(names)
+    print '\n'.join([trend["name"] for trend in retrieved[0]["trends"]])
 
 
 if __name__ == "__main__":
